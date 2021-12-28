@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>HTML Image</title>
+		<style>
+		/* CSS */
+		img {
+			width: 300px; /* 가로 길이 */
+			height: 200px; /* 세로 길이 */
+		}
+		
+		.logo {
+			width: 100px; 
+			height: 30px;
+		}
+		</style>
+	</head>
+	<body>
+		<h1>HTML Image Tag</h1>
+		
+		<!-- 
+		img 태그의 속성:
+		  * alt: alternative 
+		  	  이미지를 찾을 수 없을 때 이미지가 들어갈 위치에 이미지 대신 보여줄 텍스트
+			  음성 인식 소프트웨어가 사용하는 속성
+		  * src: source 
+		  	  이미지가 저장된 경로		 
+		-->
+		<img 
+			alt="에펠탑" 
+			src="images/eiffel_tower.jpg">
+		<img 
+			alt="금문교" 
+			src="images/golden_gate_bridge.jpg" />			
+		
+		<hr/>
+		<h1>이미지 링크</h1>
+		<!-- 다음 로고를 클릭하면 다음 사이트로 이동할 수 있는 링크 -->		
+		<a href="https://www.daum.net">
+			<img alt="다음" src="images/daum_logo.png" class="logo" />
+		</a>
+		
+	</body>
+</html>
