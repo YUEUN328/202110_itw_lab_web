@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>CSS List</title>
+		
+		<style>
+		ul {
+			list-style: none; /* list의 style을 제거. bullet들을 사용하지 않음 */
+			padding: 8px; /* 테두리선 안쪽 여백 */
+			background-color: darkgreen; /* 바탕색 */
+		}
+		
+		li {
+			color: #FFFFFF; /* 글자색: white */
+			display: inline-block; /* 화면 표시 방식: inline 속성 + block 속성 */
+			width: 60px;
+		}
+		
+		#right {
+			float: right;
+		}
+		</style>
+		
+	</head>
+	<body>
+		<h1>CSS List</h1>
+		<ul> <!-- unordered list -->
+			<li>카페</li> <!-- list item -->
+			<li>뉴스</li>
+			<li>메일</li>
+			<li id="right">지도</li>
+		</ul>
+		
+	</body>
+</html>
