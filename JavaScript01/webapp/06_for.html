@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JavaScript</title>
+	</head>
+	<body>
+		<h1>반복문과 break</h1>
+		<div id="result"></div>
+		
+		<script>
+		var result = document.getElementById('result');
+		var text = '';
+		for (var dan = 1; dan < 10; dan++) {
+			for (var n = 1; n < 10; n++) {
+				text += `${dan} x ${n} = ${dan * n} <br>`;
+				if (dan == n) {
+					break;
+				}
+			}
+			text += '<hr>';
+		}
+		result.innerHTML = text;
+		</script>
+	</body>
+</html>
