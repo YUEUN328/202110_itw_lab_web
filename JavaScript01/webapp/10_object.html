@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JavaScript Object</title>
+	</head>
+	<body>
+		<h1>JavaScript Object(객체)</h1>
+		<div id="output"></div>
+		
+		<script>
+		var out = document.getElementById('output');
+		
+		// JavaScript에서 사용자 정의 객체(Object)를 정의하는 방법:
+		// JSON(JavaScript Object Notation)
+		// {property1: value1, property2: value2, ...}
+		var ssam = {
+				name: '오쌤', 
+				age: 16, 
+				phone: ['010-0000-0000', '02-1111-1111']
+		}
+		out.innerHTML += ssam + '<br>';
+		
+		// JavaScript 객체의 프로퍼티를 접근하는 방법 1: objectName.propertyName
+		out.innerHTML += ssam.name + '<br>';
+		out.innerHTML += ssam.age + '<br>';
+		out.innerHTML += ssam.phone + '<br>'; // array(배열) 출력
+		out.innerHTML += ssam.phone[0] + '<br>'; // 배열의 인덱스 0번 원소
+		out.innerHTML += ssam.phone[1] + '<br>';
+		
+		out.innerHTML += '<br>';
+		
+		// JavaScript 객체의 프로퍼티를 접근하는 방법 2: objectName['propertyName']
+		out.innerHTML += ssam['name'] + '<br>';
+		out.innerHTML += ssam['age'] + '<br>';
+		out.innerHTML += ssam['phone'][0] + '<br>';
+		out.innerHTML += ssam['phone'][1] + '<br>';
+		
+		out.innerHTML += '<br>';
+		
+		// for-in 구문에서 객체를 사용하면, 객체의 프로퍼티 이름(문자열)만 꺼내줌
+		var x; // 프로퍼티 이름을 저장할 변수
+		for (x in ssam) {
+			out.innerHTML += x + ' : ' + ssam[x] + '<br>';
+		}
+		
+		out.innerHTML += '<br>';
+		
+		// JavaScript에서 객체는 언제든지 새로운 프로퍼티를 추가할 수 있음!
+		ssam.address = '서울시 강남구 테헤란로 124';
+		for (x in ssam) {
+			out.innerHTML += x + ' : ' + ssam[x] + '<br>';
+		}
+		
+		// method(메서드): 객체가 가지고 있는 함수(function)
+		ssam.toString = function () {
+			return '{이름:' + this.name + ', 나이:' + this.age + ', 주소:' + this.address + '}';
+		};
+		out.innerHTML += ssam + '<br>'; // ssam.toString() 호출
+		
+		out.innerHTML += '<br>';
+		
+		// 객체(object) = 데이터 + 기능(메서드)
+		var contact = {
+			// 데이터
+			name: '홍길동',
+			phone: '010-1234-5678',
+			email: 'gildong.hong@itwill.co.kr',
+			// 기능(메서드)
+			toString: function () {
+				return `[이름:${this.name}, 전화번호:${this.phone}, 이메일:${this.email}]`;
+			},
+		};
+		out.innerHTML += contact + '<br>'; // contact.toString() 메서드가 자동으로 호출됨
+		
+		out.innerHTML += '<br>';
+		
+		// 생성자 함수(constructor function)를 사용한 객체 생성
+		// 생성자 함수 정의
+		function Contact(name, phone, email) {
+			// 객체 프로퍼티 초기화
+			this.name = name;
+			this.phone = phone;
+			this.email = email;
+			
+			// 객체 메서드 정의
+			this.toString = function () {
+				return `[name:${this.name}, phone:${this.phone}, email:${this.email}]`;
+			};
+		}
+		
+		// 생성자 함수를 호출해서 객체 생성하고 변수에 할당(저장)
+		var contact2 = new Contact('jake', '010-0000-0000', 'jake@itwill.co.kr');
+		out.innerHTML += contact2 + '<br>';
+		
+		var contact3 = new Contact('김길동');
+		out.innerHTML += contact3 + '<br>';
+		
+		var contact4 = new Contact('이길동', '1234', 'lee@test.com', 100, 200);
+		out.innerHTML += contact4 + '<br>';
+		</script>
+	</body>
+</html>

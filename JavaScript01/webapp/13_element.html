@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JavaScript</title>
+		<style>
+		.main_panel {
+			font-size: 200%;
+			background-color: dodgerblue;
+			color: white;
+			text-align: center;
+			font-weight: bold;
+		}
+		.sub_panel {
+			font-size: 50%;
+			background-color: white;
+			color: black;
+			text-align: left;
+			font-weight: normal;
+			border: 1px solid gray;
+			display: none;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0px;
+		}
+		li {
+			display: inline-block;
+			width: 100px;
+		}
+		</style>
+	</head>
+	<body>
+		<h1>JavaScript element 찾기 & 스타일 변경</h1>
+		<button id="btn_hide">Hide</button>
+		<button id="btn_show">Show</button>
+		<button id="btn_none">Display None</button>
+		<button id="btn_block">Display Block</button>
+		
+		<hr>
+		
+		<div class="main_panel">Main Panel - 클릭하세요...
+			<div class="sub_panel">
+				<ul>
+					<li>YouTube</li>
+					<li>Instagram</li>
+					<li>Facebook</li>
+				</ul>
+			</div>
+		</div>
+		
+		<script>
+		var h1 = document.querySelector('h1'); // 문서에서 가장 처음에 등장하는 h1 태그 요소
+		
+		var btnHide = document.querySelector('#btn_hide');
+		btnHide.addEventListener('click', function () {
+			h1.style.visibility = 'hidden';
+		});
+		
+		var btnShow = document.querySelector('#btn_show');
+		btnShow.addEventListener('click', function () {
+			h1.style.visibility = 'visible';
+		});
+		
+		var btnNone = document.querySelector('#btn_none');
+		btnNone.addEventListener('click', function () {
+			h1.style.display = 'none';
+		});
+		
+		var btnBlock = document.querySelector('#btn_block');
+		btnBlock.addEventListener('click', function () {
+			h1.style.display = 'block';
+		});
+		
+		var mainPanel = document.querySelector('div.main_panel');
+		mainPanel.addEventListener('click', function () {
+			var subPanel = document.querySelector('div.sub_panel');
+			var display = subPanel.style.display;
+			if (display == 'none' || display == '') { // 화면에서 안 보일 때
+				subPanel.style.display = 'block'; // 보이게 만듦	
+			} else { // 화면에서 보일 때
+				subPanel.style.display = 'none'; // 안 보이게 만듦
+			}
+		});
+		</script>
+	</body>
+</html>
