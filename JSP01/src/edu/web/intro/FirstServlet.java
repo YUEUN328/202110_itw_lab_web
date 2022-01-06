@@ -40,7 +40,7 @@ public class FirstServlet extends HttpServlet {
     	
     	Date today = new Date(); // 현재 날짜 & 시간
     	
-    	response.setContentType("text/html; charset=UTF-8"); // 응답: HTML 문서 & 인코깅=UTF-8
+    	response.setContentType("text/html; charset=UTF-8"); // 응답: HTML 문서 & 인코딩=UTF-8
     	
     	PrintWriter writer = response.getWriter(); // 응답(response)을 write할 수 있는 객체를 찾음
     	writer.append("<!doctype html>")
