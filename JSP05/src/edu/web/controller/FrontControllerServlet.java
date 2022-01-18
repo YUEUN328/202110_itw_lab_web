@@ -11,8 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.web.controller.board.BoardDeleteController;
+import edu.web.controller.board.BoardDetailController;
+import edu.web.controller.board.BoardInsertController;
 import edu.web.controller.board.BoardMainController;
+import edu.web.controller.board.BoardSearchController;
+import edu.web.controller.board.BoardUpdateController;
+import edu.web.controller.user.UserDetailController;
+import edu.web.controller.user.UserInsertController;
 import edu.web.controller.user.UserMainController;
+
+import static edu.web.controller.Action.REDIRECT_PREFIX;
 
 /**
  * Servlet implementation class FrontControllerServlet
@@ -45,9 +54,19 @@ public class FrontControllerServlet extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// 요청 주소와 요청 주소를 처리할 Controller 클래스의 객체를 매핑시켜서 등록.
 		commands = new HashMap<String, Action>();
+		
 		commands.put("/", new MainController());
+		
 		commands.put("/board/main", new BoardMainController());
+		commands.put("/board/insert", new BoardInsertController());
+		commands.put("/board/detail", new BoardDetailController());
+		commands.put("/board/update", new BoardUpdateController()); 
+		commands.put("/board/delete", new BoardDeleteController());
+		commands.put("/board/search", new BoardSearchController());
+		
 		commands.put("/user/main", new UserMainController());
+		commands.put("/user/insert", new UserInsertController());
+		commands.put("/user/detail", new UserDetailController());
 	}
 
 	/**
@@ -63,16 +82,16 @@ public class FrontControllerServlet extends HttpServlet {
 		// request 객체가 가지고 있는 정보들
 		// URL: 프로토콜(protocol) + 서버 주소(이름) + 포트번호 + URI(Context Path + 하위 주소 + Query String)
 		StringBuffer url = request.getRequestURL();
-		System.out.println("Request URL: " + url);
+		System.out.println(">> Request URL: " + url);
 		
 		String uri = request.getRequestURI();
-		System.out.println("Request URI: " + uri);
+		System.out.println(">> Request URI: " + uri);
 		
 		String contextPath = request.getContextPath();
-		System.out.println("Context Path: " + contextPath);
+		System.out.println(">> Context Path: " + contextPath);
 		
 		String path = uri.substring(contextPath.length());
-		System.out.println("path: " + path);
+		System.out.println(">> path: " + path);
 		
 		// 요청 파라미터(request parameter)에 포함되어 있는 한글을 처리하기 위해서
 		request.setCharacterEncoding("UTF-8");
@@ -83,10 +102,20 @@ public class FrontControllerServlet extends HttpServlet {
 		String view = controller.execute(request, response); // 위임(delegation)
 		System.out.println("view: " + view);
 		
-		// TODO: forward vs redirect 선택
+		// forward vs redirect 선택 - view가 "redirect:" 문자열로 시작하는지를 체크
+		if (view.startsWith(REDIRECT_PREFIX)) { // view가 "redirect:" 접두사로 시작
+			// "redirect:" 접두사를 제거하고, 페이지를 redirect 방식으로 이동
+			String target = view.substring(REDIRECT_PREFIX.length());
+			System.out.println("target: " + target);
+			
+			response.sendRedirect(target);
+			// sendRedirect()를 호출하면 새로운 request와 response 객체가 생성되고, 
+			// 새로운 요청이 웹 서버로 전송
+		} else {
+			// 요청을 View 페이지로 이동(forward)
+			request.getRequestDispatcher(view).forward(request, response);
+		}
 		
-		// 요청을 View 페이지로 이동(forward)
-		request.getRequestDispatcher(view).forward(request, response);
 	}
 
 }
